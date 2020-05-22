@@ -19,3 +19,7 @@ In the virtual environment...
 4. Start developing :)
 5. `git push origin [branchname]` to push local commits to remote repository
 6. Make a pull request and request 1 reviewer in order to merge to master
+
+### Documentation
+#### Models
+#### API
