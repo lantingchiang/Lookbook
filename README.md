@@ -38,9 +38,11 @@ In the virtual environment...
 </table>
 ### Accessing the admin site
 [See official documentation here](https://docs.djangoproject.com/en/3.0/ref/contrib/admin/)
-1. Run `./manage.py createsuperuser` to create credentials for logging into admin site
-2. Enter username and password in command line as prompted
-3. Start the server by running `./manage.py runserver`
-4. Access the admin site at http://127.0.0.1:8000/admin/
-5. Log in and create model instances!
+<ol>
+  <li>Run `./manage.py createsuperuser` to create credentials for logging into admin site</li>
+  <li>Enter username and password in command line as prompted</li>
+  <li>Start the server by running `./manage.py runserver`</li>
+  <li>Access the admin site at http://127.0.0.1:8000/admin/</li>
+  <li>Log in and create model instances!</li>
+</ol>
 
