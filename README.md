@@ -36,7 +36,9 @@ In the virtual environment...
     <td>Serves static page <code>home.html</code></td>
   </tr>
 </table>
+
 ### Accessing the admin site
+
 [See official documentation here](https://docs.djangoproject.com/en/3.0/ref/contrib/admin/)
 <ol>
   <li>Run `./manage.py createsuperuser` to create credentials for logging into admin site</li>
