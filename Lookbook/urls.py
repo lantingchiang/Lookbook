@@ -21,5 +21,5 @@ urlpatterns = [
     path("api", include("mainsite.urls")),
     path("", include("frontend.urls")),
     # won't need this after linking frontend to mainsite
-    path("todo/api/", include("todos.api.urls")),
+    path("core/api/", include("core.api.urls")),
 ]
