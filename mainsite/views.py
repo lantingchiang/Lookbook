@@ -1,11 +1,10 @@
 from django.http import HttpResponse
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from django.views import View
 
 
-class HomeView(View):
-    def get(self, request):
-        return HttpResponse("This will be the home page")
+class HomeView(TemplateView):
+    template_name = "home.html"
 
 
 class FeedView(View):
@@ -44,3 +43,15 @@ class ProductView(View):
 
     def get(self, request):
         return HttpResponse("Product page")
+
+
+class LoginView(View):
+    pass
+
+
+class SignupView(View):
+    pass
+
+
+class LogoutView(View):
+    pass

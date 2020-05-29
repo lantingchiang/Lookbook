@@ -52,6 +52,10 @@ class Look(models.Model):
     # TODO - add upload_to parameter to upload to specific folder
     image = models.ImageField(null=True)
     location = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
 
 
 class Product(models.Model):
@@ -64,6 +68,10 @@ class Product(models.Model):
     stock = models.IntegerField(default=0)
     # TODO - add upload_to parameter to upload to specific folder
     image = models.ImageField(null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
 
     def __str__(self):
         return self.item_name

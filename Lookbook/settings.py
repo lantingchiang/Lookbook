@@ -31,9 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'frontend.apps.FrontendConfig',  # added
-    'todos.apps.TodosConfig',  # added
-    'rest_framework',  # added
+    "frontend.apps.FrontendConfig",  # added
+    "todos.apps.TodosConfig",  # added
+    "rest_framework",  # added
     "mainsite.apps.MainsiteConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -43,11 +43,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 ]
 
-REST_FRAMEWORK = {  # added
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny'
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        # django.contrib.auth permissions or read-only for non-authenticated users
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
     ],
-    'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
+    "DATETIME_FORMAT": "%m/%d/%Y %H:%M:%S",
 }
 
 MIDDLEWARE = [
@@ -65,7 +66,7 @@ ROOT_URLCONF = "Lookbook.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
