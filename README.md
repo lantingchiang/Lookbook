@@ -21,5 +21,18 @@ In the virtual environment...
 6. Make a pull request and request 1 reviewer in order to merge to master
 
 ## Documentation
-### Models
-### API
+### API Routes
+<table>
+  <tr>
+    <th>Route</th>
+    <th>Request Method</th>
+    <th>Parameters</th>
+    <th>Response</th>
+  </tr>
+  <tr>
+    <td>"/"</td>
+    <td><code>GET</code></td>
+    <td>NA</td>
+    <td>Serves static page <code>home.html</code></td>
+  </tr>
+</table>
