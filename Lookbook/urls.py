@@ -25,6 +25,6 @@ urlpatterns = [
     path("accounts/signup", SignupView.as_view(), name="signup"),
     path("accounts/", include("allauth.urls")),
     path("", include("frontend.urls")),
-    # we won't need the todo app after making frontend the frontend of mainsite
-    path("todo/api", include("todos.api.urls")),
+    # won't need this after linking frontend to mainsite
+    path("todo/api/", include("todos.api.urls")),
 ]
