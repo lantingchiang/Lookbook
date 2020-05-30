@@ -1,6 +1,10 @@
 from django.http import HttpResponse
+from django.contrib.auth import authenticate, login, logout
 from django.views.generic import ListView, TemplateView
 from django.views import View
+from allauth.account.views import SignupView
+
+from mainsite.forms import BuyerSignupForm, SellerSignupForm
 
 
 class HomeView(TemplateView):
@@ -45,13 +49,15 @@ class ProductView(View):
         return HttpResponse("Product page")
 
 
-class LoginView(View):
-    pass
+class SignupView(TemplateView):
+    template_name = "accounts/signup.html"
 
 
-class SignupView(View):
-    pass
+class BuyerSignupView(SignupView):
+    template_name = "accounts/buyer_signup.html"
+    form_class = BuyerSignupForm
 
 
-class LogoutView(View):
-    pass
+class SellerSignupView(SignupView):
+    template_name = "accounts/seller_signup.html"
+    form_class = SellerSignupForm

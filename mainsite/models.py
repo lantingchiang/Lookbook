@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Hashtag(models.Model):
@@ -19,12 +20,25 @@ class User(AbstractUser):
 
 
 class Profile(models.Model):
+    GENDER_CHOICES = [("F", "Female"), ("M", "Male"), ("O", "Other")]
+
+    AGE_CHOICES = [
+        ("A", "18-"),
+        ("B", "18-25"),
+        ("C", "25-35"),
+        ("D", "35-45"),
+        ("E", "45+"),
+    ]
+
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
     followed_tags = models.ManyToManyField(Hashtag)
     # TODO - add upload_to parameter to upload to specific folder
     image = models.ImageField(null=True, blank=True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, default="")
+    age = models.CharField(max_length=1, choices=AGE_CHOICES, blank=True, default="")
     # TODO - change this to address field later
     address = models.TextField(blank=True)
+    phonenumber = PhoneNumberField(default="")
 
     def __str__(self):
         return self.user.username
@@ -35,7 +49,8 @@ class Store(models.Model):
     store_name = models.CharField(max_length=200, unique=True)
     # TODO - change this to address field later
     location = models.TextField()
-    description = models.TextField(blank=True)
+    phonenumber = PhoneNumberField(default="")
+    description = models.TextField(blank=True, default="")
     # TODO - add upload_to parameter to upload to specific folder
     store_img = models.ImageField(null=True, blank=True)
 

@@ -1,6 +1,13 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User, Store, Hashtag, Look, Product, Profile
+from mainsite.models import (
+    User,
+    Store,
+    Hashtag,
+    Look,
+    Product,
+    Profile,
+)
 
 # make these models edittable in admin site
 admin.site.register(User, UserAdmin)

@@ -41,6 +41,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    # "allauth.socialaccount.providers.google",
+    # "allauth.socialaccount.providers.facebook",
+    # "allauth.socialaccount.providers.instagram",
+    "phonenumber_field",
 ]
 
 REST_FRAMEWORK = {
@@ -93,6 +101,14 @@ DATABASES = {
     }
 }
 
+# Use all-auth package instead of django's built-in
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+SITE_ID = 1  # Required by all-auth
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -104,9 +120,27 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
 ]
 
+
+ACCOUNT_FORMS = {
+    "login": "allauth.account.forms.LoginForm",
+    "signup": "mainsite.forms.SignupForm",
+    "add_email": "allauth.account.forms.AddEmailForm",
+    "change_password": "allauth.account.forms.ChangePasswordForm",
+    "set_password": "allauth.account.forms.SetPasswordForm",
+    "reset_password": "allauth.account.forms.ResetPasswordForm",
+    "reset_password_from_key": "allauth.account.forms.ResetPasswordKeyForm",
+    "disconnect": "allauth.socialaccount.forms.DisconnectForm",
+}
+
+
 # User model
 
 AUTH_USER_MODEL = "mainsite.User"
+
+# Default redirect after built-in login
+LOGIN_REDIRECT_URL = "feed"
+
+LOGOUT_REDIRECT_URL = "home"
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -125,11 +159,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = "/static/"
+STATIC_URL = "/api/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
 # File upload settings
 
-MEDIA_URL = "/media/"  # relative browser url to access file
+MEDIA_URL = "/api/media/"  # relative browser url to access file
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")  # absolute directory path
