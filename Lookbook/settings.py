@@ -123,7 +123,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 ACCOUNT_FORMS = {
     "login": "allauth.account.forms.LoginForm",
-    "signup": "mainsite.forms.SignupForm",
+    #"seller_signup": "mainsite.forms.SellerSignupForm",
+    #"user_signup": "mainsite.forms.UserSignupForm",
+    "signup": "mainsite.forms.UserSignupForm",
     "add_email": "allauth.account.forms.AddEmailForm",
     "change_password": "allauth.account.forms.ChangePasswordForm",
     "set_password": "allauth.account.forms.SetPasswordForm",
