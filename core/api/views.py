@@ -1,9 +1,9 @@
-# todos/api/views.py
+# core/api/views.py
 
 from rest_framework import viewsets
 
 from .serializers import TodoSerializer
-from todos.models import Todo
+from core.models import Todo
 
 
 class TodoViewSet(viewsets.ModelViewSet):
