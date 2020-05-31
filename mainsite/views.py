@@ -1,11 +1,14 @@
 from django.http import HttpResponse
-from django.views.generic import ListView
+from django.contrib.auth import authenticate, login, logout
+from django.views.generic import ListView, TemplateView
 from django.views import View
+from allauth.account.views import SignupView
+
+from mainsite.forms import BuyerSignupForm, SellerSignupForm
 
 
-class HomeView(View):
-    def get(self, request):
-        return HttpResponse("This will be the home page")
+class HomeView(TemplateView):
+    template_name = "home.html"
 
 
 class FeedView(View):
@@ -44,3 +47,17 @@ class ProductView(View):
 
     def get(self, request):
         return HttpResponse("Product page")
+
+
+class SignupView(TemplateView):
+    template_name = "accounts/signup.html"
+
+
+class BuyerSignupView(SignupView):
+    template_name = "accounts/buyer_signup.html"
+    form_class = BuyerSignupForm
+
+
+class SellerSignupView(SignupView):
+    template_name = "accounts/seller_signup.html"
+    form_class = SellerSignupForm

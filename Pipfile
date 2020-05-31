@@ -9,6 +9,9 @@ verify_ssl = true
 django = "*"
 pillow = "*"
 djangorestframework = "*"
+django-allauth = "*"
+django-phonenumber-field = "*"
+phonenumbers = "*"
 
 [requires]
 python_version = "3.8"
