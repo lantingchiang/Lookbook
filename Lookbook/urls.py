@@ -15,16 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from mainsite.views import SellerSignupView, BuyerSignupView, SignupView
+from mainsite.views import SellerSignupView, UserSignupView, SignupView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("mainsite.urls")),
     path("accounts/signup/seller", SellerSignupView.as_view(), name="seller-signup"),
-    path("accounts/signup/user", BuyerSignupView.as_view(), name="buyer-signup"),
+    path("accounts/signup/user", UserSignupView.as_view(), name="user-signup"),
     path("accounts/signup", SignupView.as_view(), name="signup"),
     path("accounts/", include("allauth.urls")),
     path("", include("frontend.urls")),
-    # we won't need the todo app after making frontend the frontend of mainsite
-    path("todo/api", include("todos.api.urls")),
+    # won't need this after linking frontend to mainsite
+    path("todo/api/", include("todos.api.urls")),
 ]

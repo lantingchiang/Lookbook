@@ -4,7 +4,7 @@ from django.views.generic import ListView, TemplateView
 from django.views import View
 from allauth.account.views import SignupView
 
-from mainsite.forms import BuyerSignupForm, SellerSignupForm
+from mainsite.forms import UserSignupForm, SellerSignupForm
 
 
 class HomeView(TemplateView):
@@ -53,9 +53,9 @@ class SignupView(TemplateView):
     template_name = "accounts/signup.html"
 
 
-class BuyerSignupView(SignupView):
-    template_name = "accounts/buyer_signup.html"
-    form_class = BuyerSignupForm
+class UserSignupView(SignupView):
+    template_name = "accounts/user_signup.html"
+    form_class = UserSignupForm
 
 
 class SellerSignupView(SignupView):
