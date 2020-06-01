@@ -49,7 +49,7 @@ class ProductView(View):
         return HttpResponse("Product page")
 
 
-class SignupView(TemplateView):
+class CustomSignupView(TemplateView):
     template_name = "accounts/signup.html"
 
 

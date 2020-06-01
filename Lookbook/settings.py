@@ -120,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
 ]
 
-
+"""
 ACCOUNT_FORMS = {
     "login": "allauth.account.forms.LoginForm",
     #"seller_signup": "mainsite.forms.SellerSignupForm",
@@ -133,7 +133,7 @@ ACCOUNT_FORMS = {
     "reset_password_from_key": "allauth.account.forms.ResetPasswordKeyForm",
     "disconnect": "allauth.socialaccount.forms.DisconnectForm",
 }
-
+"""
 
 # User model
 

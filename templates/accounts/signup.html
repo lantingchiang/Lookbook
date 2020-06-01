@@ -9,11 +9,8 @@
 
 <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-    <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+<a href="{% url 'user_signup' %}"> I want to signup as a shopper </a> <br>
+<a href="{% url 'seller_signup' %}"> I want to signup as a seller </a>
+
 
 {% endblock %}

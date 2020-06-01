@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from mainsite.views import SellerSignupView, UserSignupView, SignupView
+from mainsite.views import SellerSignupView, UserSignupView, CustomSignupView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("mainsite.urls")),
-    path("accounts/signup/seller", SellerSignupView.as_view(), name="seller-signup"),
-    path("accounts/signup/user", UserSignupView.as_view(), name="user-signup"),
-    path("accounts/signup", SignupView.as_view(), name="signup"),
+    path("accounts/signup/seller/", SellerSignupView.as_view(), name="seller_signup"),
+    path("accounts/signup/user/", UserSignupView.as_view(), name="user_signup"),
+    path("accounts/signup/", CustomSignupView.as_view(), name="signup"),
     path("accounts/", include("allauth.urls")),
     path("", include("frontend.urls")),
     # won't need this after linking frontend to mainsite
