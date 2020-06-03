@@ -81,8 +81,6 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     details = models.TextField(blank=True)
     stock = models.IntegerField(default=0)
-    # TODO - add upload_to parameter to upload to specific folder
-    image = models.ImageField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -90,3 +88,17 @@ class Product(models.Model):
 
     def __str__(self):
         return self.item_name
+
+
+class ProductImage(models.Model):
+    IMAGE_CLASSIFICATION = [
+        ("F", "Front"),
+        ("B", "Back"),
+        ("S", "Side"),
+        ("O", "Other"),
+    ]
+
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    # TODO - add upload_to parameter to upload to specific folder
+    image = models.ImageField(null=True)
+    image_type = models.CharField(max_length=1, choices=IMAGE_CLASSIFICATION)
