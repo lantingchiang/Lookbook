@@ -1,2 +1,4 @@
-node_modules
+__pycache__
+backend/venv_name/*
+frontend/node_modules/*
 .vs
