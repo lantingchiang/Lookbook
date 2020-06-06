@@ -55,14 +55,13 @@ class ProductViewSet(viewsets.ModelViewSet):
         Returns list of all products
         """
         # TODO - figure out filtering based on tags
-        serializer = LookSerializer(ProductViewSet.queryset, many=True)
+        serializer = LookSerializer(self.queryset, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        queryset = Product.objects.all()
-        product = get_object_or_404(queryset, pk=pk)
-        serializer = ProductSerializer(product)
-        return Response(serializer.data)
+        look = get_object_or_404(self.queryset, pk=pk)
+        serializer = LookSerializer(look)
+        return Response(serializer.data.get("product", None))
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
