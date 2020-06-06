@@ -86,6 +86,9 @@ class Look(models.Model):
     class Meta:
         ordering = ["-created_at"]
 
+    def __str__(self):
+        return self.product.item_name
+
 
 class ProductImage(models.Model):
     IMAGE_CLASSIFICATION = [

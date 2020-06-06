@@ -31,7 +31,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     store = StoreSerializer()
-    image = ImageSerializer()
+    image = serializers.ImageField(source="productimage.images", default=None)
 
     class Meta:
         model = Product
