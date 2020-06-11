@@ -7,7 +7,7 @@ import { GET_TODOS, ADD_TODO, DELETE_TODO, EDIT_TODO } from './types';
 
 // GET TODOS
 export const getTodos = id => async dispatch => {
-    const res = await axios.get('/api/todos/');
+    const res = await axios.get('/core/api/todos/');
     dispatch({
         type: GET_TODOS,
         payload: res.data
@@ -16,7 +16,7 @@ export const getTodos = id => async dispatch => {
 
 // ADD TODO
 export const addTodo = formValues => async dispatch => {
-    const res = await axios.post('/api/todos/', { ...formValues });
+    const res = await axios.post('/core/api/todos/', { ...formValues });
     dispatch({
         type: ADD_TODO,
         payload: res.data
@@ -26,7 +26,7 @@ export const addTodo = formValues => async dispatch => {
 
 // DELETE TODO
 export const deleteTodo = id => async dispatch => { // added
-    await axios.delete(`/api/todos/${id}/`);
+    await axios.delete(`/core/api/todos/${id}/`);
     dispatch({
         type: DELETE_TODO,
         payload: id
@@ -36,7 +36,7 @@ export const deleteTodo = id => async dispatch => { // added
 
 // EDIT TODO
 export const editTodo = (id, formValues) => async dispatch => {
-    const res = await axios.patch(`/api/todos/${id}/`, formValues);
+    const res = await axios.patch(`/core/api/todos/${id}/`, formValues);
     dispatch({
         type: EDIT_TODO,
         payload: res.data

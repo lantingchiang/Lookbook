@@ -31,9 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "frontend.apps.FrontendConfig",  # added
-    "todos.apps.TodosConfig",  # added
-    "rest_framework",  # added
+    'frontend.apps.FrontendConfig',  # added
+    'core.apps.CoreConfig',  # added
+    'rest_framework',  # added
     "mainsite.apps.MainsiteConfig",
     "django.contrib.admin",
     "django.contrib.auth",

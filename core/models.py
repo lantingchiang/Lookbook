@@ -1,4 +1,4 @@
-# todos/models.py
+# core/models.py
 
 from django.db import models
 
