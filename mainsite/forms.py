@@ -4,7 +4,7 @@ from allauth.account.forms import SignupForm
 from phonenumber_field.modelfields import PhoneNumberField
 
 
-class BuyerSignupForm(SignupForm):
+class UserSignupForm(SignupForm):
     GENDER_CHOICES = [("F", "Female"), ("M", "Male"), ("O", "Other")]
 
     AGE_CHOICES = [
@@ -18,7 +18,7 @@ class BuyerSignupForm(SignupForm):
     first_name = forms.CharField(max_length=30, label="First Name")
     last_name = forms.CharField(max_length=30, label="Last Name")
     gender = forms.ChoiceField(choices=GENDER_CHOICES, required=False, label="Gender")
-    age = forms.ChoiceField(choices=GENDER_CHOICES, required=False, label="Age")
+    age = forms.ChoiceField(choices=AGE_CHOICES, required=False, label="Age")
     phonenumber = PhoneNumberField()
 
     def signup(self, request, user):
