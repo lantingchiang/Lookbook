@@ -1,4 +1,4 @@
-# todos/api/urls.py
+# core/api/urls.py
 
 from rest_framework import routers
 
