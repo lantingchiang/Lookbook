@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from mainsite.models import (
     Hashtag,
-    User,
+    #User,
     Profile,
     Store,
     Look,
@@ -10,12 +10,12 @@ from mainsite.models import (
     ProductImage,
 )
 
-
+'''
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = ["username", "email", "first_name", "last_name", "is_seller"]
-
+'''
 
 class StoreSerializer(serializers.ModelSerializer):
     class Meta:

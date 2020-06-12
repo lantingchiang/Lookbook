@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-#from mainsite.views import SellerSignupView, UserSignupView, CustomSignupView
+from mainsite.views import SellerSignupView, UserSignupView, CustomSignupView
 
 from rest_framework.routers import DefaultRouter
 from rest_framework_jwt.views import obtain_jwt_token, verify_jwt_token, refresh_jwt_token
@@ -29,16 +29,14 @@ router.register(r'users', UserViewSet)
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
-    #path("home/", include("mainsite.urls")),
-    #path("accounts/signup/seller/", SellerSignupView.as_view(), name="seller_signup"),
-    #path("accounts/signup/user/", UserSignupView.as_view(), name="user_signup"),
-    #path("accounts/signup/", CustomSignupView.as_view(), name="signup"),
+    path("home/", include("mainsite.urls")),
+    path("accounts/signup/seller/", SellerSignupView.as_view(), name="seller_signup"),
+    path("accounts/signup/user/", UserSignupView.as_view(), name="user_signup"),
+    path("accounts/signup/", CustomSignupView.as_view(), name="signup"),
     path("accounts/", include("allauth.urls")),
     path("api-auth/", include('rest_framework.urls', namespace='rest_framework')),
     path("api-token-auth/", obtain_jwt_token),
     path("api-token-verify/", verify_jwt_token),
     path("api-token-refresh/", refresh_jwt_token)
     # path("", include("frontend.urls")),
-    # won't need this after linking frontend to mainsite
-    #path("todo/api/", include("todos.api.urls")),
 ]

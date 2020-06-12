@@ -1,5 +1,6 @@
 from django import forms
-from mainsite.models import User, Profile, Store
+#from mainsite.models import User
+from mainsite.models import Profile, Store
 from allauth.account.forms import SignupForm
 from phonenumber_field.modelfields import PhoneNumberField
 
