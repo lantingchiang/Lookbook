@@ -11,7 +11,7 @@ class Account extends React.Component {
         super(props)
         this.state = {
             login: {
-                usernameOrEmail: '',
+                username: '',
                 password: ''
             },
             signup: {
@@ -75,7 +75,7 @@ class Account extends React.Component {
     }
 
     handleUserLogin() {
-        this.props.login(this.state.login.usernameOrEmail, this.state.login.password)
+        this.props.login(this.state.login.username, this.state.login.password)
     }
 
     handleUserLogout() {
@@ -129,10 +129,10 @@ class Account extends React.Component {
         const notLoggedIn =
             <Form>
                 <Form.Input
-                    name='usernameOrEmail'
+                    name='username'
                     value={this.state.login.username}
-                    label='Username or E-mail'
-                    placeholder='Username or E-mail'
+                    label='Username'
+                    placeholder='Username'
                     onChange={this.handleLoginOnChange}
                     error={typeof this.props.auth.error !== 'undefined'}
                 />
