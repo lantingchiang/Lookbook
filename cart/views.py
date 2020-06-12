@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 
 from rest_framework import viewsets, permissions
-from cart.models import Products, Orders
+from cart.models import User, Products, Orders
 from cart.serializers import ProductsSerializer, OrdersSerializer
 from cart.serializers import UserSerializer
 from cart.permissions import IsOwnerOrReadOnly

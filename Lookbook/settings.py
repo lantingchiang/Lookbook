@@ -33,8 +33,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     #"frontend.apps.FrontendConfig",  # added
     "rest_framework",  # added
-    "mainsite.apps.MainsiteConfig",
     "cart",
+    #"mainsite.apps.MainsiteConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -154,7 +154,7 @@ ACCOUNT_FORMS = {
 
 # User model
 
-#AUTH_USER_MODEL = "Mainsite.User"
+AUTH_USER_MODEL = "cart.User"
 
 # Default redirect after built-in login
 LOGIN_REDIRECT_URL = "feed"
