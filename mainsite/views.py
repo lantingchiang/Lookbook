@@ -12,6 +12,7 @@ from mainsite.serializers import ProductSerializer, LookSerializer
 from mainsite.models import Product, Profile, Look
 
 
+
 class HomeView(TemplateView):
     template_name = "home.html"
 
