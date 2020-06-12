@@ -1,5 +1,5 @@
-node_modules
-.vs
+frontend/node_modules/*
+.vs/*
 db.sqlite3
 .DS_Store
 media/

@@ -30,10 +30,40 @@ In the virtual environment...
     <th>Response</th>
   </tr>
   <tr>
-    <td>"/"</td>
+    <td>"/api"</td>
     <td><code>GET</code></td>
     <td>NA</td>
     <td>Serves static page <code>home.html</code></td>
+  </tr>
+  <tr>
+    <td><code>/api/products</code></td>
+    <td><code>GET</code></td>
+    <td>NA<td>
+    <td>Renders all looks in reverse chronological order (feed page)</td>
+  </tr>
+  <tr>
+    <td><code>/api/products</code></td>
+    <td><code>POST</code></td>
+    <td><td>
+    <td>Allows creation of new product</td>
+  </tr>
+  <tr>
+    <td>"/api/products/<int:pk>"</td>
+    <td><code>GET</code></td>
+    <td></td>
+    <td>Shows detail view of product with given primary key</td>
+  </tr>
+  <tr>
+    <td>"/api/products/<int:pk>"</td>
+    <td><code>PUT/PATCH</code></td>
+    <td></td>
+    <td>Allows edits to product with given primary key</td>
+  </tr>
+  <tr>
+    <td>"/api/products/<int:pk>"</td>
+    <td><code>DELETE</code></td>
+    <td></td>
+    <td>Deletes product with given primary key</td>
   </tr>
 </table>
 
