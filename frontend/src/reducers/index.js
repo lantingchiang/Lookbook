@@ -1,10 +1,20 @@
-// reducers/index.js
+import { combineReducers } from 'redux'
 
-import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
-import todos from './todos';
+import products from './Products'
+import cart from './Cart'
+import shipping from './Shipping'
+import billing from './Billing'
+import auth from './Auth'
+import account from './Account'
 
-export default combineReducers({
-    form: formReducer,
-    todos
-});
+const rootReducers = combineReducers({
+    products,
+    cart,
+    shipping,
+    billing,
+    auth,
+    account
+})
+
+
+export default rootReducers
