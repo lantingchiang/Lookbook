@@ -33,8 +33,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     #"frontend.apps.FrontendConfig",  # added
     "rest_framework",  # added
-    "cart",
-    #"mainsite.apps.MainsiteConfig",
+    #"cart",
+    "mainsite.apps.MainsiteConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -106,11 +106,11 @@ DATABASES = {
         
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'shopping_cart',
+        'NAME': 'shop',
         'USER': 'postgres',
         'PASSWORD': 'fluffyqueen',
         'HOST': 'localhost',
-        'PORT': '5432'
+        'PORT': ''
     }
     #"default": {
         #"ENGINE": "django.db.backends.sqlite3",
@@ -125,7 +125,7 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 """
-# SITE_ID = 1  # Required by all-auth
+SITE_ID = 1  # Required by all-auth
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -154,7 +154,7 @@ ACCOUNT_FORMS = {
 
 # User model
 
-AUTH_USER_MODEL = "cart.User"
+AUTH_USER_MODEL = "mainsite.User"
 
 # Default redirect after built-in login
 LOGIN_REDIRECT_URL = "feed"

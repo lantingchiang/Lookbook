@@ -1,8 +1,10 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-#from django.contrib.auth.models import AbstractUser
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
-
+from django.contrib.postgres.fields import ArrayField
+from decimal import Decimal
 
 class Hashtag(models.Model):
     tag = models.CharField(max_length=200, unique=True)
@@ -11,12 +13,12 @@ class Hashtag(models.Model):
         return self.tag
 
 
-#class User(AbstractUser):
+class User(AbstractUser):
     # inherit username, password, email, first_name, and last_name fields
-    #is_seller = models.BooleanField(default=False)
+    is_seller = models.BooleanField(default=False)
 
-    #def __str__(self):
-        #return self.username
+    def __str__(self):
+        return self.username
 
 
 class Profile(models.Model):
@@ -59,20 +61,36 @@ class Store(models.Model):
 
 
 class Product(models.Model):
-    store = models.ForeignKey(Store, on_delete=models.CASCADE)
-
-    item_name = models.CharField(max_length=200, unique=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    details = models.TextField(blank=True)
-    stock = models.IntegerField(default=0)
+    store = models.ForeignKey(Store, on_delete=models.CASCADE, default='')
+    item_name = models.CharField(max_length=200, unique=True, default='')
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
+    details = models.TextField(default='Product description.')
+    stock = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    category = models.CharField(max_length=30, default='')
+    rating = models.PositiveSmallIntegerField(default=0)
+    image_url = models.TextField(default='')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='products', null=True, on_delete=models.CASCADE)
+
     class Meta:
-        ordering = ["-created_at"]
+        #ordering = ["-created_at"]
+        db_table = 'products'
 
     def __str__(self):
         return self.item_name
 
+class Orders(models.Model):
+    date = models.DateTimeField(auto_now_add=True)
+    products = ArrayField(models.CharField(max_length=50), default=list)
+    quantities = ArrayField(models.PositiveIntegerField(), default=list)
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
+    delivery_method = models.CharField(max_length=30, default='')
+    payment_method = models.CharField(max_length=30, default='')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='orders', on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'orders'
 
 class Look(models.Model):
     tags = models.ManyToManyField(Hashtag)

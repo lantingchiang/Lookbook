@@ -1,12 +1,13 @@
 from rest_framework import serializers
-#from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model
 from mainsite.models import (
     Hashtag,
-    #User,
+    User,
     Profile,
     Store,
     Look,
     Product,
+    Orders,
     ProductImage,
 )
 
@@ -16,6 +17,18 @@ class UserSerializer(serializers.ModelSerializer):
         model = get_user_model()
         fields = ["username", "email", "first_name", "last_name", "is_seller"]
 '''
+
+class UserSerializer(serializers.ModelSerializer):
+    products = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+
+    class Meta:
+        model = get_user_model()
+        fields = ('id', 'username', 'email', 'password', 'first_name', 'last_name', 'is_seller', 'products')
+        extra_kwargs = {
+            'password': {
+                'write_only': True
+            }
+        }
 
 class StoreSerializer(serializers.ModelSerializer):
     class Meta:
@@ -31,12 +44,20 @@ class ImageSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     store = StoreSerializer()
-    image = serializers.ImageField(source="productimage.images", default=None)
+    owner = serializers.ReadOnlyField(source='owner.username')
+    #image = serializers.ImageField(source="productimage.images", default=None)
 
     class Meta:
         model = Product
-        fields = ["store", "item_name", "price", "details", "stock", "image", "created_at"]
+        #fields = ["store", "item_name", "price", "details", "stock", "image", "created_at"]
+        fields = '__all__'
 
+class OrdersSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+
+    class Meta:
+        model = Orders
+        fields = '__all__'
 
 class LookSerializer(serializers.ModelSerializer):
     tags = serializers.SlugRelatedField(slug_field="tag", queryset=Hashtag.objects.all(), many=True)

@@ -1,22 +1,29 @@
+from django.shortcuts import render
+from django.http import JsonResponse
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import make_password
 from django.views.generic import ListView, TemplateView
 from django.views import View
-from django.shortcuts import get_object_or_404
+#from django.shortcuts import get_object_or_404
 from allauth.account.views import SignupView
-from rest_framework import viewsets
-from rest_framework.response import Response
+from rest_framework import viewsets, permissions
+#from rest_framework.response import Response
 
 from mainsite.forms import UserSignupForm, SellerSignupForm
-from mainsite.serializers import ProductSerializer, LookSerializer
-from mainsite.models import Product, Profile, Look
+from mainsite.serializers import UserSerializer, ProductSerializer, OrdersSerializer, LookSerializer
+from mainsite.models import User, Product, Orders, Profile, Look
+from mainsite.permissions import IsOwnerOrReadOnly
+from mainsite.permissions import IsStaffOrTargetUser
 
+import json
+import logging
 
 class HomeView(TemplateView):
     template_name = "home.html"
 
 
-class ProductViewSet(viewsets.ModelViewSet):
+class LookViewSet(viewsets.ModelViewSet):
     """
     list:
     Return a list of products with partial information for each product.
@@ -49,7 +56,10 @@ class ProductViewSet(viewsets.ModelViewSet):
     """
     queryset = Look.objects.all()
     serializer_class = LookSerializer
-
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        IsOwnerOrReadOnly
+    )
     def list(self, request):
         """
         Returns list of all products
@@ -62,6 +72,34 @@ class ProductViewSet(viewsets.ModelViewSet):
         look = get_object_or_404(self.queryset, pk=pk)
         serializer = LookSerializer(look)
         return Response(serializer.data.get("product", None))
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all().order_by('-item_name')
+    serializer_class = ProductSerializer
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        IsOwnerOrReadOnly
+    )
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+
+class OrdersViewSet(viewsets.ModelViewSet):
+    queryset = Orders.objects.all().order_by('-id')
+    serializer_class = OrdersSerializer
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        IsOwnerOrReadOnly
+    )
+
+    def get_queryset(self):
+        user = self.request.user
+        queryset = self.queryset.filter(owner=user)
+        return queryset
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
@@ -91,6 +129,23 @@ class HashtagView(View):
         https://docs.djangoproject.com/en/3.0/topics/class-based-views/generic-display/#dynamic-filtering
         """
         return HttpResponse("Renders all looks labeled by this hashtag in chronological order")
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    def get_permissions(self):
+        # allow non-authenticated user to create via POST
+        return (permissions.AllowAny() if self.request.method == 'POST' else IsStaffOrTargetUser()),
+
+    def perform_create(self, serializer):
+        password = make_password(self.request.data['password'])
+        serializer.save(password=password)
+
+    def perform_update(self, serializer):
+        password = make_password(self.request.data['password'])
+        serializer.save(password=password)
 
 
 class CustomSignupView(TemplateView):
