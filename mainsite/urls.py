@@ -8,13 +8,9 @@ from mainsite.views import (
     ProductViewSet,
 )
 
-router = DefaultRouter()
-router.register(r"products", ProductViewSet, basename="products")
-
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),
     # path("profile/", ProfileViewSet.as_view(), name="profile"),
     # path("<hashtag>/", HashtagView.as_view(), name="hashtag"),
 ]
 
-urlpatterns += router.urls
