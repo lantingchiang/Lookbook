@@ -12,6 +12,8 @@ djangorestframework = "*"
 django-allauth = "*"
 django-phonenumber-field = "*"
 phonenumbers = "*"
+psycopg2-binary = "*"
+djangorestframework-jwt = "*"
 
 [requires]
 python_version = "3.8"
