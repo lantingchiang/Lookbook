@@ -7,6 +7,7 @@ from mainsite.models import (
     Look,
     Product,
     Profile,
+    Orders
 )
 
 # make these models edittable in admin site
@@ -17,3 +18,4 @@ admin.site.register(Profile)
 admin.site.register(Hashtag)
 admin.site.register(Look)
 admin.site.register(Product)
+admin.site.register(Orders)
