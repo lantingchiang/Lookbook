@@ -8,9 +8,11 @@ from mainsite.views import (
     ProductViewSet,
 )
 
+
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),
     # path("profile/", ProfileViewSet.as_view(), name="profile"),
     # path("<hashtag>/", HashtagView.as_view(), name="hashtag"),
 ]
+
 
