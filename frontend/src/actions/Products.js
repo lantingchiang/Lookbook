@@ -28,6 +28,7 @@ export const fetchProducts = () => {
         axios.get('/api/products')
             .then((res) => {
                 dispatch(fetchProductsSuccess(res.data))
+                console.log(res.data)
             })
             .catch((err) => {
                 dispatch(fetchProductsFailure(err))

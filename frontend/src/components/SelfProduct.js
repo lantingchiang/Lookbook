@@ -8,9 +8,10 @@ class SelfProduct extends React.Component {
         this.state = {
             category: this.props.product.category,
             name: this.props.product.name,
+            //store
             price: this.props.product.price,
-            quantity: this.props.product.quantity,
-            description: this.props.product.description,
+            stock: this.props.product.stock,
+            details: this.props.product.details,
             imageUrl: this.props.product.image_url,
             modalOpen: false,
             confirmOpen: false
@@ -91,6 +92,10 @@ class SelfProduct extends React.Component {
 
                     <Divider hidden />
 
+                    <!--TODO store-->
+
+                    <Divider hidden />
+
                     <Input
                         label={{ tag: true, content: 'Price' }}
                         labelPosition='right'
@@ -103,12 +108,12 @@ class SelfProduct extends React.Component {
                     <Divider hidden />
 
                     <Input
-                        label={{ tag: true, content: 'Available quantity' }}
+                        label={{ tag: true, content: 'Available stock' }}
                         labelPosition='right'
                         type='number'
                         min='0'
-                        name='quantity'
-                        value={this.state.quantity}
+                        name='stock'
+                        value={this.state.stock}
                         fluid={true}
                         onChange={this.handleOnChange}
                     />
@@ -116,10 +121,10 @@ class SelfProduct extends React.Component {
                     <Divider hidden />
 
                     <Form>
-                        <Label size='large' attached='top right' tag>Product description</Label>
+                        <Label size='large' attached='top right' tag>Product details</Label>
                         <TextArea
-                            name='description'
-                            value={this.state.description}
+                            name='details'
+                            value={this.state.details}
                             onChange={this.handleOnChange}
                         />
                     </Form>

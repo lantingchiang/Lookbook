@@ -34,7 +34,7 @@ class Product extends React.Component {
     }
 
     handleAddCount() {
-        if (this.state.quantity < this.props.product.quantity) {
+        if (this.state.quantity < this.props.product.stock) {
             this.setState({ quantity: this.state.quantity + 1 })
         }
     }
@@ -65,10 +65,11 @@ class Product extends React.Component {
                     <Card.Meta>
                         ${this.props.product.price}
                     </Card.Meta>
+                    <!--TODO store-->
                 </Card.Content>
 
                 <Card.Content extra>
-                    <Rating icon='star' defaultRating={this.props.product.rating} maxRating={5} disabled />
+                    <Rating icon='star' defaultRating={this.props.product.rating} maxRating={5} controlled="true" />
                 </Card.Content>
             </Card>
 
@@ -87,20 +88,21 @@ class Product extends React.Component {
                                 <Modal.Description>
                                     <Header id='product-name' as='h1'>{this.props.product.name}</Header>
                                     <Header id='price' as='h2'>${this.props.product.price}</Header>
+                                    <!--TODO add header for store-->
                                     <Header id='rating' sub>
-                                        <Rating icon='star' defaultRating={this.props.product.rating} maxRating={5} disabled />
+                                        <Rating icon='star' defaultRating={this.props.product.rating} maxRating={5} controlled="true" />
                                     </Header>
 
                                     <div id='quantity'>
                                         <Button icon='minus' size='tiny' onClick={this.handleMinusCount} />
                                         <Input value={this.state.quantity} onChange={this.handleOnChange} />
                                         <Button icon='add' size='tiny' onClick={this.handleAddCount} />
-                                        <span>(In stock: {this.props.product.quantity})</span>
+                                        <span>(In stock: {this.props.product.stock})</span>
                                     </div>
 
                                     <Divider />
 
-                                    <p>{this.props.product.description}</p>
+                                    <p>{this.props.product.details}</p>
                                 </Modal.Description>
                             </Grid.Column>
                         </Grid.Row>

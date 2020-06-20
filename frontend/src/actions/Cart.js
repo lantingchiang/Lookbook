@@ -43,9 +43,15 @@ export const placeOrder = (items, shippingData, billingData) => {
             totalPrice += element.product.price * element.quantity
             productsArr.push(element.product.name)
             quantitiesArr.push(element.quantity)
-
-            let updatedQuantity = element.product.quantity - element.quantity
-            axios.put(`/api/products/${element.product.id}/`, {category: element.product.category, name: element.product.name, price: element.product.price, quantity: updatedQuantity})
+            console.log(items)
+            console.log(element)
+            let updatedStock = element.product.stock - element.quantity
+            axios.put(`/api/products/${element.product.id}/`, {
+                category: element.product.category,
+                name: element.product.name,
+                price: element.product.price,
+                stock: updatedStock,
+            })
         })
 
         axios.post('/api/orders/', {products: productsArr, quantities: quantitiesArr, total_price: totalPrice.toFixed(2), delivery_method: shippingData.deliveryMethod, payment_method: billingData.paymentMethod})

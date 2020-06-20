@@ -41,7 +41,15 @@ export const fetchOrders = () => {
 
 export const updateProduct = (productId, productData) => {
     return dispatch => {
-        axios.put(`/api/products/${productId}/`, {category: productData.category, name: productData.name, price: productData.price, quantity: productData.quantity, image_url: productData.imageUrl})
+        axios.put(`/api/products/${productId}/`, {
+            category: productData.category,
+            name: productData.name,
+            //store: productData.store,
+            price: productData.price,
+            stock: productData.stock,
+            image_url: productData.imageUrl,
+            details: productData.details,
+        })
             .then((res) => {
                 toastr.success(`Product ${productData.name} updated successfully.`)
             })
@@ -53,12 +61,21 @@ export const updateProduct = (productId, productData) => {
 
 export const addNewProduct = (productData) => {
     return dispatch => {
-        axios.post('/api/products/', {category: productData.category, name: productData.name, price: productData.price, quantity: productData.quantity, description: productData.description, image_url: productData.imageUrl})
+        axios.post('/api/products/', {
+            category: productData.category,
+            name: productData.name,
+            //store: { store_name: productData.store },
+            price: productData.price,
+            stock: productData.stock,
+            details: productData.details,
+            image_url: productData.imageUrl
+        })
             .then((res) => {
                 toastr.success(`Product ${productData.name} added successfully.`)
                 dispatch(fetchProducts())
             })
             .catch((err) => {
+                console.log(err)
                 toastr.error(err)
             })
     }

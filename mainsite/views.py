@@ -74,7 +74,7 @@ class LookViewSet(viewsets.ModelViewSet):
         return Response(serializer.data.get("product", None))
 
 class ProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all().order_by('-item_name')
+    queryset = Product.objects.all().order_by('-name')
     serializer_class = ProductSerializer
     permission_classes = (
         permissions.IsAuthenticatedOrReadOnly,

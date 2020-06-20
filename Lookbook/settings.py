@@ -52,11 +52,11 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": [
+    #"DEFAULT_PERMISSION_CLASSES": [
         # django.contrib.auth permissions or read-only for non-authenticated users
-        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
-    ],
-    "DATETIME_FORMAT": "%m/%d/%Y %H:%M:%S",
+        #"rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+    #],
+    #"DATETIME_FORMAT": "%m/%d/%Y %H:%M:%S",
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     )

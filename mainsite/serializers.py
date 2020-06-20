@@ -11,13 +11,6 @@ from mainsite.models import (
     ProductImage,
 )
 
-'''
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = get_user_model()
-        fields = ["username", "email", "first_name", "last_name", "is_seller"]
-'''
-
 class UserSerializer(serializers.ModelSerializer):
     products = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
@@ -43,13 +36,13 @@ class ImageSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    store = StoreSerializer()
+    # TODO store = StoreSerializer()
     owner = serializers.ReadOnlyField(source='owner.username')
     #image = serializers.ImageField(source="productimage.images", default=None)
 
     class Meta:
         model = Product
-        #fields = ["store", "item_name", "price", "details", "stock", "image", "created_at"]
+        #fields = ["id", "store", "name", "price", "details", "stock", "image_url", "created_at", "category", "rating", "owner"]
         fields = '__all__'
 
 class OrdersSerializer(serializers.ModelSerializer):

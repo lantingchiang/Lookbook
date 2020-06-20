@@ -23,9 +23,10 @@ class Account extends React.Component {
             newProduct: {
                 category: '',
                 name: '',
+                store: '',
                 price: 0.00,
-                quantity: 1,
-                description: '',
+                stock: 1,
+                details: '',
                 imageUrl: ''
             },
             signupModalOpen: false,
@@ -96,9 +97,10 @@ class Account extends React.Component {
         let newProduct = {
             category: '',
             name: '',
+            store: '',
             price: 0.00,
-            quantity: 1,
-            description: '',
+            stock: 1,
+            details: '',
             imageUrl: ''
         }
 
@@ -249,9 +251,11 @@ class Account extends React.Component {
                                     name='name'
                                     value={this.state.newProduct.name}
                                     label='Name'
-                                    placeholder='Name'
+                                    placeholder='Item Name'
                                     onChange={this.handleNewProductOnChange}
                                 />
+
+ <!--TODO store input-->
 
                                 <Form.Input
                                     name='price'
@@ -264,18 +268,18 @@ class Account extends React.Component {
                                 <Form.Input
                                     type='number'
                                     min='0'
-                                    name='quantity'
-                                    value={this.state.newProduct.quantity}
-                                    label='Quantity'
+                                    name='stock'
+                                    value={this.state.newProduct.stock}
+                                    label='Stock'
                                     placeholder='Quantity'
                                     onChange={this.handleNewProductOnChange}
                                 />
 
                                 <Form.TextArea
-                                    name='description'
-                                    value={this.state.newProduct.description}
-                                    label='Description'
-                                    placeholder='Description'
+                                    name='details'
+                                    value={this.state.newProduct.details}
+                                    label='Details'
+                                    placeholder='Product Details'
                                     onChange={this.handleNewProductOnChange}
                                 />
 

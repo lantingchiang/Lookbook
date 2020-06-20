@@ -50,9 +50,9 @@ class Profile(models.Model):
 
 class Store(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
-    store_name = models.CharField(max_length=200, unique=True)
+    store_name = models.CharField(max_length=200, unique=True, default="")
     # TODO - change this to address field later
-    location = models.TextField()
+    location = models.TextField(default="")
     phonenumber = PhoneNumberField(default="")
     description = models.TextField(blank=True, default="")
     # TODO - add upload_to parameter to upload to specific folder
@@ -63,8 +63,8 @@ class Store(models.Model):
 
 
 class Product(models.Model):
-    store = models.ForeignKey(Store, on_delete=models.CASCADE, default="")
-    item_name = models.CharField(max_length=200, unique=True, default="")
+    # TODO store = models.ForeignKey(Store, on_delete=models.CASCADE, default="")
+    name = models.CharField(max_length=200, unique=True, default="")
     price = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal("0.00"))
     details = models.TextField(default="Product description.")
     stock = models.PositiveIntegerField(default=0)
@@ -82,7 +82,7 @@ class Product(models.Model):
         db_table = "products"
 
     def __str__(self):
-        return self.item_name
+        return self.name
 
 
 class Orders(models.Model):
