@@ -1,5 +1,8 @@
 # Lookbook
 
+## Description
+This is a platform that introduces a social aspect to online shopping. Users can follow friends and see what they shop for.
+
 ## Installation
 Make sure you have [`pipenv`](https://docs.pipenv.org/en/latest/) installed.
 
@@ -71,9 +74,9 @@ In the virtual environment...
 
 [See official documentation here](https://docs.djangoproject.com/en/3.0/ref/contrib/admin/)
 <ol>
-  <li>Run `./manage.py createsuperuser` to create credentials for logging into admin site</li>
+  <li>Run <code>./manage.py createsuperuser</code> to create credentials for logging into admin site</li>
   <li>Enter username and password in command line as prompted</li>
-  <li>Start the server by running `./manage.py runserver`</li>
+  <li>Start the server by running <code>./manage.py runserver</code></li>
   <li>Access the admin site at http://127.0.0.1:8000/admin/</li>
   <li>Log in and create model instances!</li>
 </ol>
